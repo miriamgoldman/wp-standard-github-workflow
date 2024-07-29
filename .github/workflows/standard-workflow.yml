@@ -114,15 +114,25 @@ jobs:
 
       - name: Push branch to Pantheon
         run: |
+          curr_branch=$( git branch --show-current )
           # The dev environment is always based on the master branch
-          branch=$( [ "$env" == "dev" ] && echo "master" || echo "$env" )
+          dest_branch=$( [ "$env" == "dev" ] && echo "master" || echo "$env" )
+
+          if [[ ${{ github.event_name }} == 'pull_request' ]]; then
+            git checkout ${{ github.head_ref }}
+          fi
 
           # Configure git to use the SSH key and avoid host key checking
           git config --local core.sshCommand 'ssh -i ~/.ssh/pantheon -o StrictHostKeyChecking=no'
+          git config --local user.email "gh-actions@pantheon.io"
+          git config --local user.name "GitHub Actions"
+          
           git remote add pantheon $(terminus connection:info ${{ vars.SITE_NAME }}.$env --field=git_url)
-          git fetch --all
-          echo "Pushing to $env"
-          git push pantheon ${{ github.ref_name }}:$branch --force
+          git fetch pantheon
+          git checkout -b $dest_branch
+          git pull pantheon $dest_branch --rebase
+          git status
+          git push pantheon $dest_branch
 
   spin_down:
     name: Spin down
