@@ -112,7 +112,7 @@ jobs:
         run: |
           # Create multidev environment if it doesn't exist
           if ! terminus env:list ${{ vars.SITE_NAME }} --field=ID | grep $env; then
-            terminus env:create ${{ vars.SITE_NAME }}.dev $env
+            terminus env:create ${{ vars.SITE_NAME }}.live $env
           fi
 
           # Ensure environment is in git mode
@@ -127,6 +127,7 @@ jobs:
           git config --local core.sshCommand 'ssh -i ~/.ssh/pantheon -o StrictHostKeyChecking=no'
           git remote add pantheon $(terminus connection:info ${{ vars.SITE_NAME }}.$env --field=git_url)
           git fetch --all
+          echo "Pushing to $env"
           git push pantheon ${{ github.ref_name }}:$branch --force
 
   spin_down:
