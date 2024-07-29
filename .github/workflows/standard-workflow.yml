@@ -1,3 +1,4 @@
+# Note, master is used in this case, please change to your default branch.
 name: Deploy to Pantheon
 on:
   push:
