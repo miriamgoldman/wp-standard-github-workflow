@@ -1,11 +1,8 @@
 name: Deploy to Pantheon
-# on:
-#   push:
-#     # branches:
-#     #   - canary
-#   pull_request:
-#     # branches:
-#     #   - canary
+on:
+  push
+  pull_request:
+  types: [opened, reopened]
 
 jobs:
   configure_env:
