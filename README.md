@@ -26,10 +26,6 @@ We will post more information about how this works but we recommend developers t
 
 If you would like to keep a separate set of configuration for local development, you can use a file called `wp-config-local.php`, which is already in our .gitignore file.
 
-### 4. Enjoy!
-
-![alt](http://i.imgur.com/fzIeQBP.png, '')
-
 ## Branches
 
 The `default` branch of this repository is where PRs are merged, and has [CI](https://github.com/pantheon-systems/WordPress/tree/default/.circleci) that copies `default` to `master` after removing the CI directories. This allows customers to clone from `master` and implement their own CI without needing to worry about potential merge conflicts.
