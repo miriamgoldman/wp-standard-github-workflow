@@ -97,6 +97,9 @@ jobs:
         run: |
           # Identify environment based on branch name
           env=${{ github.ref_name }}
+          if [ "$env" == "master" ]; then
+            env="dev"
+          fi
 
           # Ensure environment name is 11 characters or less and has no special characters    
           env="${env:0:11}"
