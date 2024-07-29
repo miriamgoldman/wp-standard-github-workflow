@@ -141,7 +141,7 @@ jobs:
           git push pantheon $dest_branch
 
   spin_down:
-    name: Spin down environment
+    name: Spin down 
     needs: deploy_to_pantheon
     if: always()
     runs-on: ubuntu-latest
