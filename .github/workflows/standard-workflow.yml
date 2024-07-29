@@ -2,10 +2,10 @@ name: Deploy to Pantheon
 on:
   push:
     branches: 
-      - '**'
+      - master
   pull_request:
-    types: [opened, reopened]
-
+    branches:
+      - master
 jobs:
   configure_env:
     name: Configure environment and Terminus
