@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "mag-blocks/event-countdown",
+  "version": "0.1.0",
+  "title": "Event Countdown",
+  "category": "text",
+  "icon": "links",
+  "description": "An event countdown block to showcase an upcoming event.",
+  "attributes": {
+    "eventId": {
+      "type": "string"
+    },
+    "countdownType": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "html": true,
+    "className": true
+  },
+  "render": "file:./render.php",
+  "textdomain": "mag-blocks",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:/index.css",
+  "viewScript": "file:./view.js"
+}

@@ -1,0 +1,55 @@
+.is-style-bracketed {
+    --bracketed-border-length: 70px;
+    --bracketed-border-width: 21px;
+    --bracketed-border-spacing: calc( 21px * 2);
+    --bracketed-border-color: #000;
+    --bracketed-image-border: var(--bracketed-border-width) solid var(--bracketed-border-color);
+
+    padding: var(--bracketed-border-spacing);
+    position: relative;
+    border: 0;
+
+    &.has-bracket-color-bright-green {
+        --bracketed-border-color: #00bf7d;
+    }
+
+    &.has-bracket-color-vibrant-green {
+        --bracketed-border-color: #00b4c5;
+    }
+
+    &.has-bracket-color-deep-blue {
+        --bracketed-border-color: #0073e6;
+    }
+
+    &.has-bracket-color-rich-indigo {
+        --bracketed-border-color: #2546f0;
+    }
+
+    &.has-bracket-color-deep-purple {
+        --bracketed-border-color: #5928ed;
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        display: block;
+        height: var(--bracketed-border-length);
+        position: absolute;
+        width: var(--bracketed-border-length);
+        z-index: 0;
+    }
+
+    &::before {
+        border-bottom: var(--bracketed-image-border);
+        border-left: var(--bracketed-image-border);
+        bottom: 0;
+        left: 0;
+    }
+
+    &::after {
+        border-right: var(--bracketed-image-border);
+        border-top: var(--bracketed-image-border);
+        right: 0;
+        top: 0;
+    }
+}

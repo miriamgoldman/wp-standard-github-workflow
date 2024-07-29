@@ -1,0 +1,17 @@
+{
+	"name": "mag-blocks",
+	"version": "0.1.0",
+	"description": "Custom Gutenberg-based Blocks",
+	"author": "Miriam Goldman",
+	"license": "GPL-2.0-or-later",
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.6.0"
+	},
+	"dependencies": {
+		"@wordpress/server-side-render": "^4.32.0"
+	}
+}
