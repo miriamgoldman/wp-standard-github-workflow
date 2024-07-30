@@ -1,4 +1,4 @@
-## Basic GitHub Actions Workflow Example
+## Basic GitHub Actions Workflow Example (Level 2 in WebOps Matrix)
 
 This repo contains a base WordPress site, using Pantheon's WordPress upstream. Currently, it is connected to a PS Architecture site, called [Miriam Workflows WP](https://admin.dashboard.pantheon.io/sites/09905707-7c13-4b78-af75-598ddf537458#dev/code).
 
