@@ -204,3 +204,14 @@ if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
 endif;
 
 add_action( 'init', 'twentytwentyfour_pattern_categories' );
+
+
+function log_rewrite_rules() {
+ 
+	if ( isset( $_GET['settings-updated'] ) ) :
+	  error_log( 'Permalinks have been flushed.' );
+	  newrelic_notice_error( "The permalink structure has been flushed" );
+	endif;
+	
+  }
+add_filter( 'generate_rewrite_rules', 'log_rewrite_rules' );
