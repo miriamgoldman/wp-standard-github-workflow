@@ -207,11 +207,13 @@ add_action( 'init', 'twentytwentyfour_pattern_categories' );
 
 
 function log_rewrite_rules() {
- 
-	if ( isset( $_GET['settings-updated'] ) ) :
-	  error_log( 'Permalinks have been flushed.' );
-	  newrelic_notice_error( "The permalink structure has been flushed" );
+	global $pagenow;
+	if ( 'options-permalink.php' === $pagenow ) :
+		if ( isset( $_GET['settings-updated'] ) ) :
+			newrelic_record_custom_event("PermalinkFlush", array( "method"=>"admin" ) );
+		endif;
+	else :
+		newrelic_record_custom_event("PermalinkFlush", array( "method"=>"code" ) );
 	endif;
-	
   }
-add_filter( 'generate_rewrite_rules', 'log_rewrite_rules' );
+add_action( 'generate_rewrite_rules', 'log_rewrite_rules' );
