@@ -218,16 +218,3 @@ function log_rewrite_rules() {
   }
 add_action( 'generate_rewrite_rules', 'log_rewrite_rules' );
 
-function custom_flush_rewrite_shortcode() {
-    // Flush rewrite rules
-    flush_rewrite_rules();
-    
-    // Optional: return a message confirming the action
-    return 'Rewrite rules flushed successfully!';
-}
-
-// Register the shortcode
-function register_flush_rewrite_shortcode() {
-    add_shortcode('flush_rewrite', 'custom_flush_rewrite_shortcode');
-}
-add_action('init', 'register_flush_rewrite_shortcode');
