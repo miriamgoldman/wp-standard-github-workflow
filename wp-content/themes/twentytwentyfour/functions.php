@@ -210,9 +210,11 @@ function log_rewrite_rules() {
 	global $pagenow;
 	if ( 'options-permalink.php' === $pagenow ) :
 		if ( isset( $_GET['settings-updated'] ) ) :
+			newrelic_add_custom_parameter('permalink_flush_method', 'Admin Dashboard' );
 			newrelic_record_custom_event("PermalinkFlush", array( "method"=>"admin" ) );
 		endif;
 	else :
+		newrelic_add_custom_parameter('permalink_flush_method', 'Via PHP code - flush_rewrite_rules' );
 		newrelic_record_custom_event("PermalinkFlush", array( "method"=>"code" ) );
 	endif;
   }
