@@ -210,12 +210,24 @@ function log_rewrite_rules() {
 	global $pagenow;
 	if ( 'options-permalink.php' === $pagenow ) :
 		if ( isset( $_GET['settings-updated'] ) ) :
-			newrelic_add_custom_parameter('permalink_flush_method', 'Admin Dashboard' );
 			newrelic_record_custom_event("PermalinkFlush", array( "method"=>"admin" ) );
 		endif;
 	else :
-		newrelic_add_custom_parameter('permalink_flush_method', 'Via PHP code - flush_rewrite_rules' );
 		newrelic_record_custom_event("PermalinkFlush", array( "method"=>"code" ) );
 	endif;
   }
 add_action( 'generate_rewrite_rules', 'log_rewrite_rules' );
+
+function custom_flush_rewrite_shortcode() {
+    // Flush rewrite rules
+    flush_rewrite_rules();
+    
+    // Optional: return a message confirming the action
+    return 'Rewrite rules flushed successfully!';
+}
+
+// Register the shortcode
+function register_flush_rewrite_shortcode() {
+    add_shortcode('flush_rewrite', 'custom_flush_rewrite_shortcode');
+}
+add_action('init', 'register_flush_rewrite_shortcode');
